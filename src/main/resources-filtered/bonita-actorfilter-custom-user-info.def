@@ -3,7 +3,6 @@
     <id>${definition-id}</id> <!-- Id of the definition -->
     <version>${definition-version}</version> <!-- Version of the definition -->
 
-    <icon>actors_mapping.png</icon> <!-- The icon used in the Studio for this definition -->
     <category id="organization" icon="organization.png" />
 
    	<input name="customUserInfoName" type="java.lang.String" mandatory="true" />
