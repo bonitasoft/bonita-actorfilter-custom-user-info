@@ -4,7 +4,7 @@
 
     <groupId>org.bonitasoft.actorfilter</groupId>
     <artifactId>bonita-actorfilter-custom-user-info</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>bonita-actorfilter-custom-user-info</name>
     <packaging>jar</packaging>
 
