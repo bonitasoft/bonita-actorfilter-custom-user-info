@@ -9,19 +9,17 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static java.util.Arrays.asList;
-import static java.util.Collections.*;
+import static java.util.Collections.emptyList;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
 
 @ExtendWith(MockitoExtension.class)
 @RunWith(JUnitPlatform.class)
-public class UsersOfActorPageRetrieverTest {
+class UsersOfActorPageRetrieverTest {
 
     private static final int MAX_PAGE_SIZE = 2;
     private static final long PROCESS_DEFINITION_ID = 100;
