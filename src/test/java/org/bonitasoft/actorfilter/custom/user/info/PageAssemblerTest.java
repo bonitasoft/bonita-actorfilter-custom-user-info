@@ -17,7 +17,7 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @RunWith(JUnitPlatform.class)
-public class PageAssemblerTest {
+class PageAssemblerTest {
 
     @Mock(lenient = true)
     private PageRetriever<Long> retriever;
