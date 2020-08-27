@@ -27,7 +27,7 @@ public class PageAssemblerTest {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void getAllElementsShouldIterateAllPages() throws Exception {
+    void getAllElementsShouldIterateAllPages() {
         //given
         when(retriever.nextPage()).thenReturn(Arrays.asList(1L, 2L, 3L), Arrays.asList(4L, 5L));
         when(retriever.getMaxPageSize()).thenReturn(3);

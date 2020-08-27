@@ -31,8 +31,8 @@ public class PageAssembler<T> {
 
 
     public List<T> getAllElements() {
-        List<T> allElements = new ArrayList<T>();
-        List<T> page = null;
+        List<T> allElements = new ArrayList<>();
+        List<T> page;
         int maxResults = pageRetriever.getMaxPageSize();
         do {
             page = pageRetriever.nextPage();

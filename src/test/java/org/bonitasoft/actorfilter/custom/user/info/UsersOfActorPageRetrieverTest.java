@@ -13,6 +13,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static java.util.Arrays.asList;
+import static java.util.Collections.*;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
@@ -29,12 +31,12 @@ public class UsersOfActorPageRetrieverTest {
     private UsersOfActorPageRetriever retriever;
 
     @BeforeEach
-    public void setUp() throws Exception {
+    public void setUp() {
         retriever = new UsersOfActorPageRetriever(processAPI, PROCESS_DEFINITION_ID, ACTOR_NAME, MAX_PAGE_SIZE);
     }
 
     @Test
-    public void getMaxPageSize_should_return_the_max_page_size_supplied_in_the_constructor() throws Exception {
+    void getMaxPageSize_should_return_the_max_page_size_supplied_in_the_constructor() {
         //when
         int maxPageSize = retriever.getMaxPageSize();
 
@@ -44,12 +46,12 @@ public class UsersOfActorPageRetrieverTest {
 
 
     @Test
-    public void nextPage_should_retrive_the_next_available_page_and_move_pointer_to_the_following_one() throws Exception {
+    void nextPage_should_retrive_the_next_available_page_and_move_pointer_to_the_following_one() {
         //given
-        when(processAPI.getUserIdsForActor(PROCESS_DEFINITION_ID, ACTOR_NAME, 0, MAX_PAGE_SIZE)).thenReturn(Arrays.asList(1L, 2L));
-        when(processAPI.getUserIdsForActor(PROCESS_DEFINITION_ID, ACTOR_NAME, MAX_PAGE_SIZE, MAX_PAGE_SIZE)).thenReturn(Arrays.asList(3L, 4L));
-        when(processAPI.getUserIdsForActor(PROCESS_DEFINITION_ID, ACTOR_NAME, 2 * MAX_PAGE_SIZE, MAX_PAGE_SIZE)).thenReturn(Arrays.asList(5L));
-        when(processAPI.getUserIdsForActor(PROCESS_DEFINITION_ID, ACTOR_NAME, 3 * MAX_PAGE_SIZE, MAX_PAGE_SIZE)).thenReturn(Collections.<Long>emptyList());
+        when(processAPI.getUserIdsForActor(PROCESS_DEFINITION_ID, ACTOR_NAME, 0, MAX_PAGE_SIZE)).thenReturn(asList(1L, 2L));
+        when(processAPI.getUserIdsForActor(PROCESS_DEFINITION_ID, ACTOR_NAME, MAX_PAGE_SIZE, MAX_PAGE_SIZE)).thenReturn(asList(3L, 4L));
+        when(processAPI.getUserIdsForActor(PROCESS_DEFINITION_ID, ACTOR_NAME, 2 * MAX_PAGE_SIZE, MAX_PAGE_SIZE)).thenReturn(asList(5L));
+        when(processAPI.getUserIdsForActor(PROCESS_DEFINITION_ID, ACTOR_NAME, 3 * MAX_PAGE_SIZE, MAX_PAGE_SIZE)).thenReturn(emptyList());
 
         //when
         List<Long> page1 = retriever.nextPage();

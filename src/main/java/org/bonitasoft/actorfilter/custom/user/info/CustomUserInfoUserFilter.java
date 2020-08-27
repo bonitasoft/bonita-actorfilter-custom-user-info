@@ -22,14 +22,11 @@ import org.bonitasoft.engine.identity.User;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * @author Elias Ricken de Medeiros
  */
 public class CustomUserInfoUserFilter extends AbstractUserFilter {
-
-    private static final Logger LOGGER = Logger.getLogger(CustomUserInfoUserFilter.class.getName());
 
     private static final String AUTO_ASSIGN_KEY = "autoAssign";
 
@@ -39,7 +36,7 @@ public class CustomUserInfoUserFilter extends AbstractUserFilter {
 
     private static final String USE_PARTIAL_MATCH_KEY = "usePartialMatch";
 
-    private final int maxResults = 500;
+    private static final int MAX_RESULTS = 500;
 
     /**
      * Perform validation on the inputs defined on the actorfilter definition (src/main/resources/bonita-actorfilter-custom-user-info.def)
@@ -80,17 +77,17 @@ public class CustomUserInfoUserFilter extends AbstractUserFilter {
     }
 
     private List<Long> getAllUserIdsForActor(String actorName, ProcessAPI processAPI) {
-        PageAssembler<Long> pageAssembler = getPageAssember(new UsersOfActorPageRetriever(processAPI, getExecutionContext().getProcessDefinitionId(), actorName, maxResults));
+        PageAssembler<Long> pageAssembler = getPageAssember(new UsersOfActorPageRetriever(processAPI, getExecutionContext().getProcessDefinitionId(), actorName, MAX_RESULTS));
         return pageAssembler.getAllElements();
     }
 
     private List<Long> getAllUserIdsWithInfo(String infoName, String infoValue, boolean usePartialMatch, IdentityAPI identityAPI) {
-        PageAssembler<Long> pageAssembler = getPageAssember(new UsersWithCustomUserInfoPageRetriever(identityAPI, infoName, infoValue, usePartialMatch, maxResults));
+        PageAssembler<Long> pageAssembler = getPageAssember(new UsersWithCustomUserInfoPageRetriever(identityAPI, infoName, infoValue, usePartialMatch, MAX_RESULTS));
         return pageAssembler.getAllElements();
     }
 
-    private <T> PageAssembler<T> getPageAssember(PageRetriever<T> pageRetriver) {
-        return new PageAssembler<T>(pageRetriver);
+    private <T> PageAssembler<T> getPageAssember(PageRetriever<T> pageRetriever) {
+        return new PageAssembler<>(pageRetriever);
     }
 
     @Override

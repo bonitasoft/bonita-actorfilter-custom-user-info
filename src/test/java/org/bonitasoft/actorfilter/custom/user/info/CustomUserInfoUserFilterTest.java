@@ -18,7 +18,8 @@ import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -84,7 +85,7 @@ public class CustomUserInfoUserFilterTest {
     }
 
     @Test
-    public void validateInputParameters_throws_ConnectorValidationException_if_customUserInfoName_is_not_set() throws Exception {
+    void validateInputParameters_throws_ConnectorValidationException_if_customUserInfoName_is_not_set()  {
         // given
         // only value is set
         filter = new CustomUserInfoUserFilter();
@@ -99,7 +100,7 @@ public class CustomUserInfoUserFilterTest {
     }
 
     @Test
-    public void validateInputParameters_throws_ConnectorValidationException_if_customUserInfoName_is_set_to_null_or_empty() throws Exception {
+    void validateInputParameters_throws_ConnectorValidationException_if_customUserInfoName_is_set_to_null_or_empty() {
         // given
         // only value has valid value
         final Map<String, Object> parameters = new HashMap<String, Object>();
@@ -116,7 +117,7 @@ public class CustomUserInfoUserFilterTest {
     }
 
     @Test
-    public void validateInputParameters_throws_ConnectorValidationException_if_customUserInfoValue_is_not_set() throws Exception {
+    void validateInputParameters_throws_ConnectorValidationException_if_customUserInfoValue_is_not_set()  {
         // given
         // only name is set
         filter = new CustomUserInfoUserFilter();
@@ -131,10 +132,10 @@ public class CustomUserInfoUserFilterTest {
     }
 
     @Test
-    public void validateInputParameters_throws_ConnectorValidationException_if_customUserInfoValue_is_set_to_null_or_empty() throws Exception {
+    void validateInputParameters_throws_ConnectorValidationException_if_customUserInfoValue_is_set_to_null_or_empty()  {
         // given
         // only name has valid value
-        final Map<String, Object> parameters = new HashMap<String, Object>();
+        final Map<String, Object> parameters = new HashMap<>();
         parameters.put(INFO_NAME_KEY, INFO_NAME);
         parameters.put(INFO_VALUE_KEY, null);
         filter.setInputParameters(parameters);
@@ -148,7 +149,7 @@ public class CustomUserInfoUserFilterTest {
     }
 
     @Test
-    public void filter_should_return_all_users_with_given_user_info_when_all_users_are_actors() throws Exception {
+    void filter_should_return_all_users_with_given_user_info_when_all_users_are_actors() throws Exception {
         // given
         final List<Long> usersWithInfo = Arrays.asList(1L, 2L);
         final List<Long> usersOfActor = Arrays.asList(1L, 2L, 3L);
@@ -163,7 +164,7 @@ public class CustomUserInfoUserFilterTest {
     }
 
     @Test
-    public void filter_should_return_only_users_with_given_user_info_and_actor() throws Exception {
+    void filter_should_return_only_users_with_given_user_info_and_actor() throws Exception {
         // given
         addNameAndValueToFilter();
         List<Long> usersWithInfo = Arrays.asList(1L, 2L, 3L, 7L);
@@ -180,7 +181,7 @@ public class CustomUserInfoUserFilterTest {
 
 
     @Test
-    public void shouldAutoAssign_should_return_true_if_property_autoAssign_is_not_set() throws Exception {
+    void shouldAutoAssign_should_return_true_if_property_autoAssign_is_not_set()  {
         //when
         boolean autoAssign = filter.shouldAutoAssignTaskIfSingleResult();
 
@@ -189,9 +190,9 @@ public class CustomUserInfoUserFilterTest {
     }
 
     @Test
-    public void shoulAutoAssign_should_return_false_if_property_autoAssign_is_set_to_false() throws Exception {
+    void shoulAutoAssign_should_return_false_if_property_autoAssign_is_set_to_false()  {
         //given
-        filter.setInputParameters(Collections.<String, Object>singletonMap(AUTO_ASSIGN_KEY, false));
+        filter.setInputParameters(Collections.singletonMap(AUTO_ASSIGN_KEY, false));
 
         //when
         boolean autoAssign = filter.shouldAutoAssignTaskIfSingleResult();
@@ -201,9 +202,9 @@ public class CustomUserInfoUserFilterTest {
     }
 
     @Test
-    public void shoulAutoAssign_should_return_true_if_property_autoAssign_is_set_to_true() throws Exception {
+    void shoulAutoAssign_should_return_true_if_property_autoAssign_is_set_to_true()  {
         //given
-        filter.setInputParameters(Collections.<String, Object>singletonMap(AUTO_ASSIGN_KEY, true));
+        filter.setInputParameters(Collections.singletonMap(AUTO_ASSIGN_KEY, true));
 
         //when
         boolean autoAssign = filter.shouldAutoAssignTaskIfSingleResult();
@@ -214,7 +215,7 @@ public class CustomUserInfoUserFilterTest {
 
 
     @Test
-    public void shouldUsePartialMatch_should_return_false_if_key_userPartialMatch_is_not_set() throws Exception {
+    void shouldUsePartialMatch_should_return_false_if_key_userPartialMatch_is_not_set()  {
         //when
         Boolean usePartialMatch = filter.shouldUsePartialMatch();
 
@@ -223,7 +224,7 @@ public class CustomUserInfoUserFilterTest {
     }
 
     @Test
-    public void shouldUsePartialMatch_should_return_true_if_key_userPartialMatch_is_set_to_true() throws Exception {
+    void shouldUsePartialMatch_should_return_true_if_key_userPartialMatch_is_set_to_true()  {
         filter.setInputParameters(Collections.singletonMap(USE_PARTIAL_MATCH_KEY, true));
         //when
         Boolean usePartialMatch = filter.shouldUsePartialMatch();
@@ -233,8 +234,8 @@ public class CustomUserInfoUserFilterTest {
     }
 
     @Test
-    public void shouldUsePartialMatch_should_return_false_if_key_userPartialMatch_is_set_to_false() throws Exception {
-        filter.setInputParameters(Collections.<String, Object>singletonMap(USE_PARTIAL_MATCH_KEY, false));
+    void shouldUsePartialMatch_should_return_false_if_key_userPartialMatch_is_set_to_false()  {
+        filter.setInputParameters(Collections.singletonMap(USE_PARTIAL_MATCH_KEY, false));
         //when
         Boolean usePartialMatch = filter.shouldUsePartialMatch();
 
@@ -243,8 +244,8 @@ public class CustomUserInfoUserFilterTest {
     }
 
     @Test
-    public void shouldUsePartialMatch_should_return_false_if_key_userPartialMatch_is_set_to_null() throws Exception {
-        filter.setInputParameters(Collections.<String, Object>singletonMap(USE_PARTIAL_MATCH_KEY, null));
+    void shouldUsePartialMatch_should_return_false_if_key_userPartialMatch_is_set_to_null() {
+        filter.setInputParameters(Collections.singletonMap(USE_PARTIAL_MATCH_KEY, null));
         //when
         Boolean usePartialMatch = filter.shouldUsePartialMatch();
 
