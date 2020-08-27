@@ -22,13 +22,10 @@ import java.util.List;
  */
 public class UsersWithCustomUserInfoPageRetriever extends PageRetriever<Long> {
 
-    private IdentityAPI identityAPI;
-
-    private String customUserInfoName;
-
-    private String customUserInfoValue;
-
-    private boolean usePartialMatch;
+    private final IdentityAPI identityAPI;
+    private final String customUserInfoName;
+    private final String customUserInfoValue;
+    private final boolean usePartialMatch;
 
     public UsersWithCustomUserInfoPageRetriever(IdentityAPI identityAPI, String customUserInfoName, String customUserInfoValue, boolean usePartialMatch, int maxPageSize) {
         super(maxPageSize);
