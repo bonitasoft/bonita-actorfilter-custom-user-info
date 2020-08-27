@@ -65,7 +65,7 @@
         <maven-source-plugin.version>3.2.0</maven-source-plugin.version>
 
         <!-- Sonar -->
-        <sonar.projectKey>bonitasoft_bonita-connector-uipath</sonar.projectKey>
+        <sonar.projectKey>${sonar.organization}_${project.artifactId}</sonar.projectKey>
         <sonar.organization>bonitasoft</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
