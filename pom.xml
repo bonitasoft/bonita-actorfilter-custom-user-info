@@ -64,7 +64,7 @@
         <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
 
         <!-- Sonar -->
-        <sonar.projectKey>${sonar.organization}_${project.artifactId}</sonar.projectKey>
+        <sonar.projectKey>bonitasoft_bonita-actorfilter-custom-user-info</sonar.projectKey>
         <sonar.organization>bonitasoft</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
     </properties>
